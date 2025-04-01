@@ -12,6 +12,9 @@ class Solution:
                 else:
                     start = mid + 1
             
+            if start == 0:
+                return 0
+            
             return start if nums[start] <= -nums[start - 1] else start - 1
         
         near_zero = get_near_zero_index(nums)
