@@ -3,9 +3,18 @@
  * @return {number}
  */
 var fib = function(n) {
-  if (n <= 1) {
-    return n;
-  }
+  const dp = [0, 1]
 
-  return fib(n - 1) + fib(n - 2);
+  function aaa(num) {
+    if (dp[num] !== undefined) {
+      return dp[num]
+    }
+
+    const result = aaa(num - 1) + aaa(num - 2);
+
+    dp[num] = result
+    return dp[num]
+  }
+  
+  return aaa(n)
 };
