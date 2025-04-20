@@ -10,7 +10,7 @@ var twoSum = function(nums, target) {
 
   for (let i = 0; i < nums.length; i++) {
     const key = target - nums[i]
-    console.log(store);
+
     if (store[key] !== undefined) {
       return [store[key], i];
     }
