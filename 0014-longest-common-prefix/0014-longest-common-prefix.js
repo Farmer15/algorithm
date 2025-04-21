@@ -7,25 +7,27 @@ var longestCommonPrefix = function(strs) {
     return strs[0];
   }
 
+  const start = [];
+  let startIndex = 0;
 
-  let index = 0;
-  while (confirmCommonString(strs, index) && index <= strs[0].length) {
-    index++;
-  }
-
-  return strs[0].slice(0, index - 1);
-
-  function confirmCommonString(array, index) {
-    if (!array[0]) {
-      return false;
-    }
-
-    for (let i = 1; i < array.length; i++) {
-      if (array[0].slice(0, index) !== array[i].slice(0, index)) {
-        return false;
+  while (strs.every((str) => {
+    for (const index in start) {
+      if (str[index] !== start[index]) {
+        return false
       }
     }
-  
-    return true;
-  } 
+
+    return true 
+  })) {
+    if (startIndex === strs[0].length) {
+      return start.join("");
+    }
+
+    start.push(strs[0][startIndex]);
+    startIndex++;
+  }
+
+  start.pop()
+
+  return start.join("");
 };
