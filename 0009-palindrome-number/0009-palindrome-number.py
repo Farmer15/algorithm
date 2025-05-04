@@ -3,12 +3,15 @@ class Solution:
         if x < 0:
             return False
 
-        reversed_num = 0
-        temp = x
+        str_x = str(x)
+        left = 0
+        right = len(str_x) - 1
 
-        while temp != 0:
-            digit = temp % 10
-            reversed_num = reversed_num * 10 + digit
-            temp //= 10
+        while left <= right:
+            if str_x[left] != str_x[right]:
+                return False
+        
+            left += 1
+            right -= 1
 
-        return reversed_num == x
+        return True
