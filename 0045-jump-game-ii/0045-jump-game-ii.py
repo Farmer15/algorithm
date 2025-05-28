@@ -1,18 +1,18 @@
 class Solution:
     def jump(self, nums: List[int]) -> int:
         if len(nums) <= 1:
-            return 0 
+            return 0
 
-        can_jump = [0, 1]
+        can_jump = 0
+        cur_jump = 0
+        jump_count = 0
 
-        for index in range(2, len(nums)):
-            min_jump = float("inf")
+        for index in range(len(nums) - 1):
+            can_jump = max(nums[index] + index, can_jump)
 
-            for num_index in range(index):
-                if nums[num_index] + num_index >= index:
-                    min_jump = min(min_jump, can_jump[num_index] + 1)
-            
-            can_jump.append(min_jump)
+            if cur_jump == index:
+                jump_count += 1
+                cur_jump = can_jump
+
         
-        return can_jump[-1]
-        
+        return jump_count
